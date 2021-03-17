@@ -26,7 +26,7 @@ export function stopBackground() {
 }
 
 function playSound(sound) {
-	sound.currentTime = 0; // 플레이가 항상 음악의 처음부터 시작되도록
+	sound.currentTime = 0;
 	sound.play();
 }
 

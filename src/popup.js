@@ -6,13 +6,12 @@ export default class PopUp {
 		this.popUpText = document.querySelector(".pop-up__message");
 		this.popUpRefresh = document.querySelector(".pop-up__refresh");
 		this.popUpRefresh.addEventListener("click", () => {
-			this.onClick && this.onClick(); //클릭되면 main>game에서 받아온 인자(start)가 실행
+			this.onClick && this.onClick();
 			this.hide();
 		});
 	}
 
 	setClickListener(onClick) {
-		// popup클래스에 맴버변수 onClick에 이 함수에서 전달받은 매개변수 인자를 전달
 		this.onClick = onClick;
 	}
 	showWithText(text) {

@@ -1,10 +1,8 @@
 "use strict";
-// import PopUp from './field.js'
-// import * as sound from './sound.js' // sound이름 전부다
 import PopUp from "./popup.js";
-// import Game from './game.js';
 import { GameBuilder, Reason } from "./game.js";
-import * as sound from "./sound.js"; // sound이름 전부다
+import * as sound from "./sound.js";
+import { Filed } from "./field.js";
 
 const pickElem = function randomNum(lower, upper) {
 	for (var i = 0; i < 1; i++) {
@@ -14,29 +12,22 @@ const pickElem = function randomNum(lower, upper) {
 	}
 };
 
-// 랜덤 숫자 생성 최소 5~10, 9~10
 const carrotCount = pickElem(5, 10);
 const bugCount = pickElem(9, 10);
 
-// 당근, 벅스 랜덤 생성
-
 const gameFinishBanner = new PopUp();
-// gameFinishBanner.setClickListener(startGame);
 
-// object를 간편하고 알기 쉽게 하기 위해 개선한 방법임
+// object를 간편하고 알기 쉽게 하기 위해 개선한 방법
 const game = new GameBuilder()
-	.withgameDuration(5) // 게임 타이머 설정
+	.withgameDuration(5)
 	.withcarrotCount(carrotCount)
 	.withbugCount(bugCount)
 	.build();
 
-// const game = new Game(5,carrotCount,bugCount);
-// game에서 stop() 인자값(Reason)을 받아온다
 game.setGamestopListener((reason) => {
 	let message;
 	switch (reason) {
-		// game의 Reason 오브젝트를 받아온다
-		case Reason.win: //Reason을 써주고 뒤에 보면 써줄수있는게 3개뿐이여서 오타 확률을 줄여준다
+		case Reason.win:
 			message = "YOU WON 🎉";
 			sound.playWin();
 			break;
@@ -56,6 +47,5 @@ game.setGamestopListener((reason) => {
 });
 
 gameFinishBanner.setClickListener(() => {
-	// popup의 setClickListener의 인자로 전달된다
 	game.start();
 });
